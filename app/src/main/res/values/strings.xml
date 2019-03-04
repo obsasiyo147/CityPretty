@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CityPrettyApp</string>
+    <color name="cityPrettyPink">#D9285F</color>
 </resources>

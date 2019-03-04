@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "445630440763",
+    "firebase_url": "https://cityprettyapp.firebaseio.com",
+    "project_id": "cityprettyapp",
+    "storage_bucket": "cityprettyapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445630440763:android:9bb87d5671563b60",
+        "android_client_info": {
+          "package_name": "com.example.cityprettyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445630440763-h2pjs64upva2phjujpnuhqmid1iv0l25.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cityprettyapp",
+            "certificate_hash": "702b8d439355c1781e5397e0aa03929196e30178"
+          }
+        },
+        {
+          "client_id": "445630440763-hm5obdasr270iid2d20fhh4gm3ov8pjl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfnya0B7J2SIxBqJmobToBievQnlPN8Ug"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445630440763-hm5obdasr270iid2d20fhh4gm3ov8pjl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

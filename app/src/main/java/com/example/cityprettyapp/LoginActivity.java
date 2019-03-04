@@ -1,6 +1,5 @@
 package com.example.cityprettyapp;
 
-import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -10,101 +9,96 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    //Button
+    private Button signInButton;
     private Button registerButton;
-
-    //EditTexts
-    private EditText userEmail;
-    private EditText userPassword;
-
-    //TextViews
-    private TextView alreadyRegistered;
-
-    //Other Variables
-    private ProgressDialog progressDialog;
+    private EditText email;
+    private EditText password;
+    private TextView forgotPassword; //LOOK INTO THIS
+    //firebase auth
     private FirebaseAuth firebaseAuth;
+    //progress bar
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        FirebaseApp.initializeApp(this);
+        signInButton = (Button) findViewById(R.id.loginButton);
+        registerButton = (Button) findViewById(R.id.loginRegisterButton);
+        email = (EditText) findViewById(R.id.loginEmail);
+        password = (EditText) findViewById(R.id.loginPassword);
+        forgotPassword = (TextView) findViewById(R.id.loginForgotPassword); //LOOK INTO THIS
+
         firebaseAuth = FirebaseAuth.getInstance();
-
         if(firebaseAuth.getCurrentUser() != null) {
+            //profile activity here
             finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
         progressDialog = new ProgressDialog(this);
-        registerButton = (Button) findViewById(R.id.RegisterButton);
-        userEmail = (EditText) findViewById(R.id.signUpEmail);
-        userPassword = (EditText) findViewById(R.id.signUpPassword);
-        alreadyRegistered = (TextView) findViewById(R.id.signUpAlreadyRegistered);
 
-
+        signInButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
-        alreadyRegistered.setOnClickListener(this);
 
     }
 
-    private void registerUser() {
-        String email = userEmail.getText().toString().trim();
-        String password = userPassword.getText().toString().trim();
+    private void userLogin() {
+        String userEmail = email.getText().toString().trim();
+        String userPassword = password.getText().toString().trim();
 
         //checking if email and passwords are empty
-        if(TextUtils.isEmpty(email)) {
+        if(TextUtils.isEmpty(userEmail)) {
             //email is empty
             Toast.makeText(this, "Please enter an email.", Toast.LENGTH_SHORT).show();
             //stopping the function from executing further
         }
 
-        if(TextUtils.isEmpty(password)) {
+        if(TextUtils.isEmpty(userEmail)) {
             //password is empty
             Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
             //stopping the function from executing further
         }
 
-        progressDialog.setMessage("Registering you...");
+        progressDialog.setMessage("Signing in...");
         progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-
+                            //user is successfully registered and logged in
+                            //lets just display a message rn
+                            Toast.makeText(LoginActivity.this, "Signed in successfully.", Toast.LENGTH_SHORT).show();
+                            progressDialog.hide();
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                            progressDialog.hide();
                         } else {
-                            Toast.makeText(MainActivity.this, "Could not register.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Sign in failed.", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
                         }
                     }
                 });
     }
-
     @Override
     public void onClick(View view) {
-        if(view == registerButton) {
-            registerUser();
+        if(view == signInButton) {
+            userLogin();
         }
-
-        if(view == alreadyRegistered) {
-            startActivity(new Intent(this, LoginActivity.class));
+        if(view == registerButton) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
         }
     }
 }
