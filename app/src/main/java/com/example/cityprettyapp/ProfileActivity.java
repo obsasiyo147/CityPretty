@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth firebaseAuth;
     private TextView exampleText;
+    private Button changeSettings;
     private Button logoutButton;
 
     @Override
@@ -30,8 +31,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         exampleText = (TextView) findViewById(R.id.exampleProfileLogin);
         exampleText.setText("Welcome " + user.getEmail());
         logoutButton = (Button) findViewById(R.id.signOutButton);
-
+        changeSettings = (Button) findViewById(R.id.changeSettingsButton);
         logoutButton.setOnClickListener(this);
+        changeSettings.setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +42,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
+        }
+
+        if (view == changeSettings) {
+            finish();
+            startActivity(new Intent(this, ChangeSettings.class));
         }
     }
 }
