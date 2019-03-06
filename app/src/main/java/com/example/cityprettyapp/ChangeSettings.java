@@ -49,7 +49,7 @@ public class ChangeSettings extends AppCompatActivity {
                              if(task.isSuccessful()) {
                                  Toast.makeText(ChangeSettings.this, "Password changed.", Toast.LENGTH_SHORT).show();
                                  finish();
-                                 startActivity(new Intent(ChangeSettings.this, LoginActivity.class));
+                                 startActivity(new Intent(ChangeSettings.this, ProfileActivity.class));
                              } else {
                                  String error = task.getException().getMessage();
                                  Toast.makeText(ChangeSettings.this, "Error." + error, Toast.LENGTH_SHORT).show();
