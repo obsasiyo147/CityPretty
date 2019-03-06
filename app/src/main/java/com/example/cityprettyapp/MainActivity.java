@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             progressDialog.hide();
                         } else {
                             Toast.makeText(MainActivity.this, "Could not register.", Toast.LENGTH_SHORT).show();
+                            System.out.println(task.getException().getMessage().toString());
+                            progressDialog.hide();
                         }
                     }
                 });

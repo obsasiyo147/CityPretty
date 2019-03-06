@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         signInButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
+        forgotPassword.setOnClickListener(this);
 
     }
 
@@ -99,6 +100,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view == registerButton) {
             finish();
             startActivity(new Intent(this, MainActivity.class));
+        }
+
+        if(view == forgotPassword) {
+            finish();
+            startActivity(new Intent(this, ForgotPasswordActivity.class));
+            //call the forgot password method
         }
     }
 }
