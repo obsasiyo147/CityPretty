@@ -70,10 +70,10 @@ public class AppointmentActivity extends AppCompatActivity {
         mLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String lat = "35.149022";
-                String lng = "-90.051628";
-                String strUri = "http://maps.google.com/maps?q=loc:" + lat + "," + lng + " ("+ "Memphis" + ")";
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+              //  String lat = "35.149022";
+               // String lng = "-90.051628";
+                //String strUri = "http://maps.google.com/maps?q=loc:" + lat + "," + lng + " ("+ "Memphis" + ")";
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + "University of Memphis"));
                 getIntent().setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                 startActivity(intent);
             }
