@@ -12,7 +12,8 @@
         android:layout_marginTop="120dp"
         android:layout_marginBottom="15dp"
         android:layout_gravity="center"
-        android:text="Pick Up Address" />
+        android:text="Pick Up Address"
+        android:id="@+id/location"/>
 
     <Button
         android:layout_width="300dp"

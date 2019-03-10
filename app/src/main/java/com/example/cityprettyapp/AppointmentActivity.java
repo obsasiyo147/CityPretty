@@ -1,8 +1,10 @@
 package com.example.cityprettyapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,8 @@ public class AppointmentActivity extends AppCompatActivity {
     private Button mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
+    private  Button mLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +46,6 @@ public class AppointmentActivity extends AppCompatActivity {
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
-                int doweek = cal.get(Calendar.DAY_OF_WEEK);
 
                 DatePickerDialog dialog = new DatePickerDialog(AppointmentActivity.this
                         ,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -61,6 +64,20 @@ public class AppointmentActivity extends AppCompatActivity {
                 // this is where you can save the date for later on the database
             }
         };
+
+        mLocation = (Button) findViewById(R.id.location);
+
+        mLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String lat = "35.149022";
+                String lng = "-90.051628";
+                String strUri = "http://maps.google.com/maps?q=loc:" + lat + "," + lng + " ("+ "Memphis" + ")";
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+                getIntent().setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
+            }
+        });
 
     }
 }
