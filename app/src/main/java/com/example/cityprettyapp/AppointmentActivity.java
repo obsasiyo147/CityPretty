@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,7 @@ public class AppointmentActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     private  Button mLocation;
+    private EditText mAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +68,15 @@ public class AppointmentActivity extends AppCompatActivity {
         };
 
         mLocation = (Button) findViewById(R.id.location);
+        mAddress = (EditText) findViewById(R.id.address);
 
         mLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               //  String lat = "35.149022";
                // String lng = "-90.051628";
-                //String strUri = "http://maps.google.com/maps?q=loc:" + lat + "," + lng + " ("+ "Memphis" + ")";
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + "University of Memphis"));
+                //String strUri = "http://maps.google.com/maps?q=loc:" + lat + "," + lng + " ("+ "PickUp" + ")";
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + mAddress.getText().toString()));
                 getIntent().setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                 startActivity(intent);
             }

@@ -6,6 +6,12 @@
     android:orientation="vertical"
     tools:context=".AppointmentActivity">
 
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:id="@+id/address"/>
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
