@@ -20,6 +20,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //EditTexts
     private EditText userEmail;
     private EditText userPassword;
+    private EditText firstName;
+    private EditText lastName;
 
     //TextViews
     private TextView alreadyRegistered;
@@ -54,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         userEmail = (EditText) findViewById(R.id.signUpEmail);
         userPassword = (EditText) findViewById(R.id.signUpPassword);
         alreadyRegistered = (TextView) findViewById(R.id.signUpAlreadyRegistered);
+
+        //name editTexts
+        firstName = (EditText) findViewById(R.id.registerFirstName);
+        lastName = (EditText) findViewById(R.id.registerLastName);
 
 
         registerButton.setOnClickListener(this);
@@ -86,7 +93,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-
+                            String fullName = firstName.getText().toString().trim() + " " +  lastName.getText().toString().trim(); //combining first and last name
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(fullName).build(); //creating UserProfileChangeRequest object to update name
+                            FirebaseAuth.getInstance().getCurrentUser().updateProfile(profileUpdates); //setting the user's display name
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                             progressDialog.hide();
