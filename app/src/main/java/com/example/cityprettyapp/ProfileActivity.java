@@ -27,9 +27,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+        String name = user.getDisplayName();
         exampleText = (TextView) findViewById(R.id.exampleProfileLogin);
-        exampleText.setText("Welcome " + user.getDisplayName()); //displaying user's first and last name
+        exampleText.setText("Welcome " + name); //displaying user's first and last name
         logoutButton = (Button) findViewById(R.id.signOutButton);
         changeSettings = (Button) findViewById(R.id.changeSettingsButton);
         logoutButton.setOnClickListener(this);
