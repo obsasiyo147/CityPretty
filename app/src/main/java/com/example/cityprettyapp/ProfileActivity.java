@@ -35,6 +35,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         changeSettings = (Button) findViewById(R.id.changeSettingsButton);
         logoutButton.setOnClickListener(this);
         changeSettings.setOnClickListener(this);
+
     }
 
     @Override
