@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".MakePaymentActivity"></activity>
+        <activity android:name=".PayPalActivity" />
+        <activity android:name=".PaymentActivity" />
         <activity android:name=".AppointmentActivity" />
         <activity android:name=".ChangeSettings" />
         <activity android:name=".ForgotPasswordActivity" />
