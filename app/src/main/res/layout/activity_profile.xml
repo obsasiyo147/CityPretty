@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cityPrettyPink"
     tools:context=".ProfileActivity">
 
     <TextView
         android:id="@+id/exampleProfileLogin"
-        android:layout_width="182dp"
-        android:layout_height="99dp"
+        android:layout_width="311dp"
+        android:layout_height="84dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Example"
+        android:gravity="center"
+        android:text="Welcome to CityPretty! This is feed page!"
+        android:textSize="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.275" />
 
     <Button
         android:id="@+id/signOutButton"

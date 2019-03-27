@@ -72,6 +72,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String email = userEmail.getText().toString().trim();
         String password = userPassword.getText().toString().trim();
 
+        // John's Additions
+        String fname = firstName.getText().toString().trim();
+        String lname = lastName.getText().toString().trim();
+
+
+        if(TextUtils.isEmpty(fname)) {
+            //email is empty
+            Toast.makeText(this, "Please enter you first name.", Toast.LENGTH_SHORT).show();
+            //stopping the function from executing further
+        }
+
+        if(TextUtils.isEmpty(lname)) {
+            //email is empty
+            Toast.makeText(this, "Please enter you last name.", Toast.LENGTH_SHORT).show();
+            //stopping the function from executing further
+        }
+        //------------
+
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)) {
             //email is empty
