@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(fullName).build(); //creating UserProfileChangeRequest object to update name
                             FirebaseAuth.getInstance().getCurrentUser().updateProfile(profileUpdates); //setting the user's display name
                             finish();
-                            startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
+                            startActivity(new Intent(getApplicationContext(), BeauticiansList.class));
                             progressDialog.hide();
                         } else {
                             Toast.makeText(MainActivity.this, "Could not register.", Toast.LENGTH_SHORT).show();
