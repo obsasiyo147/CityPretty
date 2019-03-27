@@ -6,12 +6,12 @@
     android:orientation="vertical"
     tools:context=".AppointmentActivity">
 
-    <EditText
+   <!-- <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:id="@+id/address"/>
+        android:id="@+id/address"/> -->
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:minLines="6"
         android:paddingLeft="20dp"
         android:paddingBottom="50dp"
-        android:text="Add Description" />
+        android:hint="Add Description" />
 
     <Button
         android:layout_width="300dp"

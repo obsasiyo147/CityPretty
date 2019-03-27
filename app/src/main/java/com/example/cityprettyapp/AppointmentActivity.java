@@ -1,6 +1,9 @@
 package com.example.cityprettyapp;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -39,8 +44,8 @@ public class AppointmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment);
-        mDisplayDate = (Button) findViewById(R.id.datepicker);
 
+        mDisplayDate = (Button) findViewById(R.id.datepicker);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,26 +64,97 @@ public class AppointmentActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        final int min = cal.get(Calendar.MINUTE);
 
+        TimePickerDialog.OnTimeSetListener mTime = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                if(view.isShown()) {
+                    Calendar cal1 = Calendar.getInstance();
+                    cal1.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    cal1.set(Calendar.MINUTE, minute);
+
+                }
+                }
+        };
+
+        final TimePickerDialog timePickerDialog = new TimePickerDialog(AppointmentActivity.this,  android.R.style.Theme_Holo_Light_Dialog_NoActionBar, mTime, hour, min, false);
+        timePickerDialog.setTitle("Choose hour:");
+        timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                // this is where you can save the date for later on the database
+                // this is where you can save the date for when the database is made
+                timePickerDialog.show();
             }
         };
 
         mLocation = (Button) findViewById(R.id.location);
-        mAddress = (EditText) findViewById(R.id.address);
+       // for google maps mAddress = (EditText) findViewById(R.id.address);
+        //pop up window for
+
+
+
+// Set an EditText view to get user input
+
+
+       /* final AlertDialog.Builder addressInputAlertBox = new AlertDialog.Builder(this);
+        addressInputAlertBox.setTitle("Enter you Address");
+        final EditText input = new EditText(this);
+        addressInputAlertBox.setView(input);
+        addressInputAlertBox.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                // Do something with value!
+            }
+        });
+        addressInputAlertBox.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // Canceled.
+            }
+        });*/
 
         mLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final AlertDialog.Builder addressInputAlertBox = new AlertDialog.Builder(AppointmentActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.addresbox,null);
+                final EditText mAddressInput = (EditText) mView.findViewById(R.id.addressInput);
+                Button mCancel = (Button) mView.findViewById(R.id.cancel);
+                Button mOk = (Button) mView.findViewById(R.id.ok);
+
+                mOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                            if(!mAddressInput.getText().toString().isEmpty()){
+                                Toast.makeText(AppointmentActivity.this, "Address Saved", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(AppointmentActivity.this, "Address Not Saved", Toast.LENGTH_SHORT).show();
+                            }
+                    }
+                });
+
+
+
+                addressInputAlertBox.setView(mView);
+                final AlertDialog showdialog = addressInputAlertBox.create();
+                showdialog.show();
+
+                mCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showdialog.cancel();
+                    }
+                });
+                // below is for google maps
               //  String lat = "35.149022";
                // String lng = "-90.051628";
                 //String strUri = "http://maps.google.com/maps?q=loc:" + lat + "," + lng + " ("+ "PickUp" + ")";
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + mAddress.getText().toString()));
-                getIntent().setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(intent);
+       //         Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + mAddress.getText().toString()));
+        //        getIntent().setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+         //       startActivity(intent);
             }
         });
 
