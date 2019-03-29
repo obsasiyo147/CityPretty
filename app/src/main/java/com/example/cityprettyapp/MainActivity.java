@@ -21,6 +21,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -69,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void registerUser() {
-        String email = userEmail.getText().toString().trim();
-        String password = userPassword.getText().toString().trim();
+        final String email = userEmail.getText().toString().trim();
+        final String password = userPassword.getText().toString().trim();
 
         // John's Additions
         String fname = firstName.getText().toString().trim();
@@ -115,6 +120,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(fullName).build(); //creating UserProfileChangeRequest object to update name
                             FirebaseAuth.getInstance().getCurrentUser().updateProfile(profileUpdates); //setting the user's display name
                             finish();
+
+                            String user_id = firebaseAuth.getCurrentUser().getUid();
+                            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
+                            Map<String, Object> newUser = new HashMap();
+                            newUser.put("Email", email);
+                            newUser.put("Name", fullName);
+                            newUser.put("Password", password);
+                            current_user_db.setValue(newUser);
+
                             startActivity(new Intent(getApplicationContext(), BeauticiansList.class));
                             progressDialog.hide();
                         } else {

@@ -14,6 +14,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private FirebaseAuth firebaseAuth;
     private TextView exampleText;
     private Button changeSettings;
+    private Button seeServices;
     private Button logoutButton;
 
     @Override
@@ -33,8 +34,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         exampleText.setText("Welcome " + name); //displaying user's first and last name
         logoutButton = (Button) findViewById(R.id.signOutButton);
         changeSettings = (Button) findViewById(R.id.changeSettingsButton);
+        seeServices = (Button) findViewById(R.id.service);
         logoutButton.setOnClickListener(this);
         changeSettings.setOnClickListener(this);
+        seeServices.setOnClickListener(this);
 
     }
 
@@ -49,6 +52,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (view == changeSettings) {
             finish();
             startActivity(new Intent(this, ChangeSettings.class));
+        }
+
+        if (view == seeServices){
+            finish();
+            startActivity(new Intent(this, ServiceList.class));
         }
     }
 }
