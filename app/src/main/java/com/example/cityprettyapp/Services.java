@@ -4,47 +4,56 @@ package com.example.cityprettyapp;
 import java.io.Serializable;
 
 public class Services implements Serializable {
-    private long name;
-    private long price;
-    private long description;
-    private long id;
+    private String name;
+    private String price;
+    private String description;
+    private String id;
 
     public Services(){
 
     };
 
-    public Services(long newName, long newPrice, long newDescription, long newId){
+    public Services(String newName, String newPrice, String newDescription, String newId){
         this.name = newName;
         this.price = newPrice;
         this.description = newDescription;
         this.id = newId;
     }
 
-    public long getName() {
+    public String getName() {
         return name;
     }
 
-    public long getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public long getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setName (long name) {
+    public void setName (String name) {
         this.name = name;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public void setDescription(long description) {
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String toString(){
+        return "Service{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\''+
+                ", description'" + description + '\'' +
+                '}';
     }
 }
