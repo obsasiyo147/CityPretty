@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,9 +18,20 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 // Currently not linked to other pages
 // copy and paste in another activity in the manifests/AndroidManifest.xml file
@@ -30,8 +42,8 @@ import java.util.Calendar;
 //
 //                <category android:name="android.intent.category.LAUNCHER" />
 //            </intent-filter>
-public class AppointmentActivity extends AppCompatActivity {
 
+public class AppointmentActivity extends AppCompatActivity {
     private static final String TAG = "AppointmentActivity";
 
     private Button mDisplayDate;
@@ -45,7 +57,15 @@ public class AppointmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment);
 
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = database.getReference("");
+
         mDisplayDate = (Button) findViewById(R.id.datepicker);
+
+        final SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm");
+        final SimpleDateFormat sdf2 = new SimpleDateFormat("EEE, MMM d, YYYY");
+
+
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,19 +84,24 @@ public class AppointmentActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-        Calendar cal = Calendar.getInstance();
+        final Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         final int min = cal.get(Calendar.MINUTE);
-
-        TimePickerDialog.OnTimeSetListener mTime = new TimePickerDialog.OnTimeSetListener() {
+        final TimePickerDialog.OnTimeSetListener mTime = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 if(view.isShown()) {
-                    Calendar cal1 = Calendar.getInstance();
-                    cal1.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    cal1.set(Calendar.MINUTE, minute);
+                    Calendar cal2 = Calendar.getInstance();
+                    cal2.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    cal2.set(Calendar.MINUTE, minute);
 
+                    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    DatabaseReference serviceRef = ref.child("Services").child(getIntent().getStringExtra("serviceNumber")).child("request").child(currentFirebaseUser.getUid());
+                    Map<String,Object> request = new HashMap<>();
+                    request.put("Time", sdf1.format(cal2.getTime()));
+                    serviceRef.updateChildren(request);
                 }
+
                 }
         };
 
@@ -84,12 +109,25 @@ public class AppointmentActivity extends AppCompatActivity {
         timePickerDialog.setTitle("Choose hour:");
         timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 // this is where you can save the date for when the database is made
                 timePickerDialog.show();
+                Calendar cal1 = Calendar.getInstance();
+                cal1.set(Calendar.MONTH, month);
+                cal1.set(Calendar.YEAR, year);
+                cal1.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference serviceRef = ref.child("Services").child(getIntent().getStringExtra("serviceNumber")).child("request").child(currentFirebaseUser.getUid());
+                Map<String,Object> request = new HashMap<>();
+                request.put("Date", sdf2.format(cal1.getTime()));
+                serviceRef.updateChildren(request);
+
             }
         };
+
 
         mLocation = (Button) findViewById(R.id.location);
        // for google maps mAddress = (EditText) findViewById(R.id.address);
@@ -122,25 +160,38 @@ public class AppointmentActivity extends AppCompatActivity {
                 final AlertDialog.Builder addressInputAlertBox = new AlertDialog.Builder(AppointmentActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.addresbox,null);
                 final EditText mAddressInput = (EditText) mView.findViewById(R.id.addressInput);
+                final EditText mNameInput = (EditText) mView.findViewById(R.id.nameInput);
+                final EditText mEmailInput = (EditText) mView.findViewById(R.id.emailInput);
                 Button mCancel = (Button) mView.findViewById(R.id.cancel);
                 Button mOk = (Button) mView.findViewById(R.id.ok);
-
-                mOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                            if(!mAddressInput.getText().toString().isEmpty()){
-                                Toast.makeText(AppointmentActivity.this, "Address Saved", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(AppointmentActivity.this, "Address Not Saved", Toast.LENGTH_SHORT).show();
-                            }
-                    }
-                });
 
 
 
                 addressInputAlertBox.setView(mView);
                 final AlertDialog showdialog = addressInputAlertBox.create();
                 showdialog.show();
+
+                mOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(!mAddressInput.getText().toString().isEmpty()){
+                            Toast.makeText(AppointmentActivity.this, "Address Saved", Toast.LENGTH_SHORT).show();
+                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            DatabaseReference serviceRef = ref.child("Services").child(getIntent().getStringExtra("serviceNumber")).child("request").child(currentFirebaseUser.getUid());
+                            Map<String, Object> request = new HashMap<>();
+                            request.put("Address", mAddressInput.getText().toString());
+                            request.put("Name", mNameInput.getText().toString());
+                            request.put("Email", mEmailInput.getText().toString());
+                            serviceRef.updateChildren(request);
+                            showdialog.cancel();
+
+
+                        }else{
+                            Toast.makeText(AppointmentActivity.this, "Address Not Saved", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
 
                 mCancel.setOnClickListener(new View.OnClickListener() {
                     @Override

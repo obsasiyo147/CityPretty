@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             newUser.put("Password", password);
                             current_user_db.setValue(newUser);
 
+
                             startActivity(new Intent(getApplicationContext(), BeauticiansList.class));
                             progressDialog.hide();
                         } else {

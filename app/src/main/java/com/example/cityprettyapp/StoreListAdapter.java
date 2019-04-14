@@ -29,8 +29,9 @@ public class StoreListAdapter extends ArrayAdapter<Store> {
     public View getView(int position, View convertView, ViewGroup parent) {
             String name = getItem(position).getName();
             String address = getItem(position).getAddress();
+            final String serviceNumber = getItem(position).getServiceNumber();
 
-            Store store = new Store(address, name);
+            Store store = new Store(address, name, serviceNumber );
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mResource, parent, false);
              TextView text1 =(TextView) convertView.findViewById(R.id.address);
@@ -43,6 +44,7 @@ public class StoreListAdapter extends ArrayAdapter<Store> {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent( mContext ,AppointmentActivity.class);
+                myIntent.putExtra("serviceNumber", serviceNumber);
                 mContext.startActivity(myIntent);
 
             }
