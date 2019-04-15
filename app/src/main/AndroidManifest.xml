@@ -14,13 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".BeauticianSide"></activity>
-        <activity android:name=".BeauticiansList">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".BeauticiansList"></activity>
         <activity android:name=".MakePaymentActivity" />
         <activity android:name=".PayPalActivity" />
         <activity android:name=".PaymentActivity" />
@@ -30,7 +25,13 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ServiceList" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

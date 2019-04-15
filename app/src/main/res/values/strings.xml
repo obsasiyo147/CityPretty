@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">CityPrettyApp</string>
     <color name="cityPrettyPink">#D9285F</color>
+    <string name="Open">NavBar</string>
+    <string name="Close">NavBar</string>
 </resources>

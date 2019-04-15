@@ -131,8 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             newUser.put("Password", password);
                             current_user_db.setValue(newUser);
 
-
-                            startActivity(new Intent(getApplicationContext(), BeauticiansList.class));
+                            startActivity(new Intent(getApplicationContext(), PayPalActivity.class));
                             progressDialog.hide();
                         } else {
                             Toast.makeText(MainActivity.this, "Could not register.", Toast.LENGTH_SHORT).show();
