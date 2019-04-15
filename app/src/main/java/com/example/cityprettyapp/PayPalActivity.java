@@ -1,6 +1,7 @@
 package com.example.cityprettyapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,11 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PayPalActivity extends AppCompatActivity {
     private Button payBtn;
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle abdt;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +30,38 @@ public class PayPalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pay_pal);
         payBtn = findViewById(R.id.PayBtn);
         drawerLayout = findViewById(R.id.drawer_layout);
-        abdt = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
-        abdt.setDrawerIndicatorEnabled(true);
-        drawerLayout.addDrawerListener(abdt);
-        abdt.syncState();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        Toolbar myToolBar = findViewById(R.id.toolbar);
+
+
+        Toolbar myToolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                myToolBar,
+                R.string.Open,
+                R.string.Close
+        ) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                drawerLayout.closeDrawers();
+            }
+        };
+        drawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
 
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +75,10 @@ public class PayPalActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
+
+                if(id == R.id.services_page) {
+                    startActivity(new Intent(getApplicationContext(), PayPalActivity.class));
+                }
 
                 if(id == R.id.beauticians_page) {
                     startActivity(new Intent(getApplicationContext(), BeauticiansList.class));
@@ -62,10 +95,26 @@ public class PayPalActivity extends AppCompatActivity {
                 if(id == R.id.appointments_page) {
                     startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
                 }
+
+                if(id == R.id.about_city_pretty) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setData(Uri.parse("http://www.citypretty.com"));
+                    startActivity(intent);
+                }
+
+                if(id == R.id.logout_button) {
+                    firebaseAuth.signOut();
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    Toast.makeText(getApplicationContext(), "Signing you out", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             }
         });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

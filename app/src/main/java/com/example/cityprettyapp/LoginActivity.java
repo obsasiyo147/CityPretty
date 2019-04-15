@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             //user is successfully registered and logged in
                             //lets just display a message rn
                             Toast.makeText(LoginActivity.this, "Signed in successfully.", Toast.LENGTH_SHORT).show();
-                            progressDialog.hide();
+                            progressDialog.dismiss();
                             finish();
                             startActivity(new Intent(getApplicationContext(), PayPalActivity.class));
                         } else {
@@ -97,7 +97,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if(view == signInButton) {
-            finish();
             userLogin();
         }
         if(view == registerButton) {

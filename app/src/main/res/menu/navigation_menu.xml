@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/services_page"
+        android:title="Services" />
+
     <item
         android:id="@+id/appointments_page"
         android:title="Appointments" />
@@ -17,5 +22,15 @@
         android:id="@+id/settings_page"
         android:title="Settings"
         />
+
+    <item
+        android:id="@+id/about_city_pretty"
+        android:title="About City Pretty"
+        />
+
+
+    <item
+        android:id="@+id/logout_button"
+        android:title="Sign out" />
 
 </menu>
