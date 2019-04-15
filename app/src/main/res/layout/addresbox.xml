@@ -24,7 +24,36 @@
         android:layout_marginBottom="5sp"
         android:background="@null"
         android:ems="10"
-        android:hint="Address Here"
+        android:hint="Address"
+        android:inputType="textPostalAddress"
+        android:paddingLeft="10dp" />
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5sp"
+        android:background="@null"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPostalAddress"
+        android:paddingLeft="10dp" />
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5sp"
+        android:background="@null"
+        android:ems="10"
+        android:hint="Email"
         android:inputType="textPostalAddress"
         android:paddingLeft="10dp" />
 

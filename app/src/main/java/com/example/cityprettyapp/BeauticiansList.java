@@ -1,6 +1,7 @@
 package com.example.cityprettyapp;
 
 import android.content.Intent;
+
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,6 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +27,17 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import static java.sql.DriverManager.println;
 
 public class BeauticiansList extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -104,16 +122,16 @@ public class BeauticiansList extends AppCompatActivity {
 
 
         //get all the stores for firebase
-        Store store1 = new Store("38002", "Beauticians Store 1");
-        Store store2 = new Store("38012", "Beauticians Store 2");
-        Store store3 = new Store("38022", "Beauticians Store 3");
-        Store store4 = new Store("38032", "Beauticians Store 4");
-        Store store5 = new Store("38042", "Beauticians Store 5");
-        Store store6 = new Store("38152", "Beauticians Store 1");
-        Store store7 = new Store("38132", "Beauticians Store 2");
-        Store store8 = new Store("38162", "Beauticians Store 3");
-        Store store9 = new Store("38172", "Beauticians Store 4");
-        Store store10 = new Store("38102", "Beauticians Store 5");
+        Store store1 = new Store("38002", "Beauticians Store 1", "1");
+        Store store2 = new Store("38012", "Beauticians Store 2", "2");
+        Store store3 = new Store("38022", "Beauticians Store 3", "3");
+        Store store4 = new Store("38032", "Beauticians Store 4", "4");
+        Store store5 = new Store("38042", "Beauticians Store 5", "5");
+        Store store6 = new Store("38152", "Beauticians Store 1", "6");
+        Store store7 = new Store("38132", "Beauticians Store 2", "7");
+        Store store8 = new Store("38162", "Beauticians Store 3", "8");
+        Store store9 = new Store("38172", "Beauticians Store 4", "9");
+        Store store10 = new Store("38102", "Beauticians Store 5", "10");
 
         ArrayList<Store>  storeList = new ArrayList<>();
         storeList.add(store1);
@@ -129,6 +147,30 @@ public class BeauticiansList extends AppCompatActivity {
 
         StoreListAdapter adapter = new StoreListAdapter(this, R.layout.listviewcustom, storeList);
         mListView.setAdapter(adapter);
+
+
+        final List<Store> StoreObjects;
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference services = databaseRef.child("Services");
+        services.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Store>  services = new ArrayList<Store>();
+
+                for(DataSnapshot item : dataSnapshot.getChildren() ){
+                    services.add(new Store(item.child("store").getValue().toString(), item.child("address").getValue().toString()  , item.getKey()));
+                }
+
+                StoreListAdapter adapter = new StoreListAdapter(BeauticiansList.this, R.layout.listviewcustom, services);
+                mListView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 

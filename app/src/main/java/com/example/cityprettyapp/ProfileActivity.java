@@ -137,7 +137,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         if (view == seeServices){
             finish();
-            startActivity(new Intent(this, ServiceList.class));
+            startActivity(new Intent(this, BeauticiansList.class));
         }
     }
 
