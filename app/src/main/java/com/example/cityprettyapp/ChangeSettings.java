@@ -36,13 +36,14 @@ public class ChangeSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_settings);
-        drawerLayout = findViewById(R.id.drawer_layout);
         Toolbar myToolBar = (Toolbar) findViewById(R.id.toolbar);
         firebaseAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         saveButton = (Button) findViewById(R.id.submitButton);
         newPassword = (EditText) findViewById(R.id.newPassword);
         firebaseAuth = FirebaseAuth.getInstance();
+
+        drawerLayout = findViewById(R.id.drawer_layout);
 
 
         mDrawerToggle = new ActionBarDrawerToggle(

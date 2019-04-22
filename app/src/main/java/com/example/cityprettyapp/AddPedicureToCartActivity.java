@@ -1,15 +1,17 @@
 package com.example.cityprettyapp;
 
-import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+
+import android.graphics.Bitmap;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class MakePaymentActivity extends AppCompatActivity {
+public class AddPedicureToCartActivity extends AppCompatActivity {
     private WebView mWebView;
     private ProgressBar mProgress;
     private int id;
@@ -29,12 +31,12 @@ public class MakePaymentActivity extends AppCompatActivity {
                 mWebView.setVisibility(View.GONE);
                 mProgress.setVisibility(View.VISIBLE);
                 if(url.equals("http://citypretty.com")) {
-                    Toast.makeText(MakePaymentActivity.this, "Payment is canceled", Toast.LENGTH_SHORT);
+                    Toast.makeText(AddPedicureToCartActivity.this, "Payment is canceled", Toast.LENGTH_SHORT);
                     finish();
                 }
 
                 else {
-                    Toast.makeText(MakePaymentActivity.this, "Payment complete", Toast.LENGTH_SHORT);
+                    Toast.makeText(AddPedicureToCartActivity.this, "Payment complete", Toast.LENGTH_SHORT);
 
                 }
 
@@ -50,7 +52,7 @@ public class MakePaymentActivity extends AppCompatActivity {
             }
         });
 
-            mWebView.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=QSBJXTDHC3ASC&display=1");
+        mWebView.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CESF5SWSQDXDG");
 
     }
 }

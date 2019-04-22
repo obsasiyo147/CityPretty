@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PayPalActivity extends AppCompatActivity {
     private Button payBtn;
+    private Button addPedicureToCart;
+    private Button addManicureToCart;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private FirebaseAuth firebaseAuth;
@@ -31,6 +33,8 @@ public class PayPalActivity extends AppCompatActivity {
         payBtn = findViewById(R.id.PayBtn);
         drawerLayout = findViewById(R.id.drawer_layout);
         firebaseAuth = FirebaseAuth.getInstance();
+        addPedicureToCart = findViewById(R.id.addPedicureToCart);
+        addManicureToCart = findViewById(R.id.addManicureToCart);
 
 
 
@@ -62,6 +66,20 @@ public class PayPalActivity extends AppCompatActivity {
         };
         drawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        addPedicureToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PayPalActivity.this, AddPedicureToCartActivity.class));
+            }
+        });
+
+        addManicureToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PayPalActivity.this, AddManicureToCartActivity.class));
+            }
+        });
 
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +126,7 @@ public class PayPalActivity extends AppCompatActivity {
                     firebaseAuth.signOut();
                     finish();
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                    Toast.makeText(getApplicationContext(), "Signing you out", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Signed out successfully", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
