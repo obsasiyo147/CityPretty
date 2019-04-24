@@ -2,6 +2,16 @@
 
 <!--This XML file was create fro the purpose of making buttons round wherever necessary. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--When a button is pressed this item decided what color it takes. -->
+    <item android:state_pressed="true" >
+        <shape android:shape="rectangle">
+            <solid android:color="#46494f"/>
+            <stroke  android:color="#46494f"  android:width="2dp" />
+            <corners android:radius="25dp"/>
+        </shape>
+    </item>
+
+    <!-- Default button format for login/sign up-->
     <item>
         <shape android:shape="rectangle">
             <solid android:color="#000000"/>
@@ -9,4 +19,7 @@
             <corners android:radius="25dp"/>
         </shape>
     </item>
+
+
+
 </selector>
