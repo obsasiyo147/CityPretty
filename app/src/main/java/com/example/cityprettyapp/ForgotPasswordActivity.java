@@ -15,10 +15,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button sendEmail;
     private EditText userEmail;
+    private TextView rememberedAccount;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -30,6 +31,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         sendEmail = (Button) findViewById(R.id.sendEmailButton);
         userEmail = (EditText) findViewById(R.id.emailReset);
+        rememberedAccount = (TextView) findViewById(R.id.rememberedPass);
+
+        rememberedAccount.setOnClickListener(this);
 
         sendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,5 +61,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         }); //end of sendEmail onClickListener
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == rememberedAccount) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 }

@@ -61,38 +61,44 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String userPassword = password.getText().toString().trim();
 
         //checking if email and passwords are empty
-        if(TextUtils.isEmpty(userEmail)) {
+        if(TextUtils.isEmpty(userEmail) && TextUtils.isEmpty(userPassword)) {
             //email is empty
-            Toast.makeText(this, "Please enter an email.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nothing is filled.", Toast.LENGTH_SHORT).show();
             //stopping the function from executing further
         }
 
-        if(TextUtils.isEmpty(userEmail)) {
+        else if (TextUtils.isEmpty(userEmail)) {
             //password is empty
-            Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter your email.", Toast.LENGTH_SHORT).show();
             //stopping the function from executing further
         }
 
-        progressDialog.setMessage("Signing in...");
-        progressDialog.show();
+        else if (TextUtils.isEmpty(userPassword)) {
+            //password is empty
+            Toast.makeText(this, "Please enter your password.", Toast.LENGTH_SHORT).show();
+            //stopping the function from executing further
+        }
+        else {
+            progressDialog.setMessage("Signing in...");
+            progressDialog.show();
 
-        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            //user is successfully registered and logged in
-                            //lets just display a message rn
-                            Toast.makeText(LoginActivity.this, "Signed in successfully.", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), PayPalActivity.class));
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Sign in failed.", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
+            firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                //user is successfully registered and logged in
+                                //lets just display a message rn
+                                Toast.makeText(LoginActivity.this, "Signed in successfully.", Toast.LENGTH_SHORT).show();
+                                progressDialog.hide();
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Sign in failed.", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }
                         }
-                    }
-                });
+                    });}
     }
     @Override
     public void onClick(View view) {
