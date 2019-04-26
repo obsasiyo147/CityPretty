@@ -34,7 +34,6 @@ public class PayPalActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         firebaseAuth = FirebaseAuth.getInstance();
         addPedicureToCart = findViewById(R.id.addPedicureToCart);
-        addManicureToCart = findViewById(R.id.addManicureToCart);
 
 
 
@@ -74,12 +73,6 @@ public class PayPalActivity extends AppCompatActivity {
             }
         });
 
-        addManicureToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PayPalActivity.this, AddManicureToCartActivity.class));
-            }
-        });
 
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
