@@ -8,62 +8,99 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/drawer_layout">
+
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cityPrettyPink"
+        android:background="@color/colorCream"
         tools:context=".ChangeSettings">
 
-        <ImageView
-            android:id="@+id/loginLogo"
-            android:layout_width="261dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="96dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="84dp"
-            app:layout_constraintBottom_toTopOf="@+id/loginEmail"
+        <!--<ImageView-->
+        <!--android:id="@+id/loginLogo"-->
+        <!--android:layout_width="261dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginTop="96dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginBottom="84dp"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/loginEmail"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.833"-->
+        <!--app:srcCompat="@drawable/trimmed_citypretty_logo" />-->
+
+        <!--Action bar -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/cityPrettyPink"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:titleTextColor="@color/colorBlack"
+            app:title="Settings"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/logo"
+            android:layout_width="186dp"
+            android:layout_height="181dp"
+            android:layout_marginStart="125dp"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginEnd="126dp"
+            android:layout_marginRight="126dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/trimmed_citypretty_logo"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.833"
-            app:srcCompat="@drawable/trimmed_citypretty_logo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/submitButton"
-            android:layout_width="85dp"
-            android:layout_height="50dp"
+            android:layout_width="277dp"
+            android:layout_height="55dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="144dp"
+            android:background="@drawable/round_button"
             android:text="Save"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/newPassword"
+            app:layout_constraintVertical_bias="0.963" />
 
         <EditText
             android:id="@+id/newPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="112dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="99dp"
+            android:layout_marginLeft="99dp"
+            android:layout_marginTop="93dp"
+            android:layout_marginEnd="99dp"
+            android:layout_marginRight="99dp"
+            android:layout_marginBottom="89dp"
+            android:backgroundTint="@color/colorBlack"
             android:ems="10"
             android:hint="New Password"
             android:inputType="textPassword"
+            android:textColorHint="@android:color/black"
+            app:layout_constraintBottom_toTopOf="@+id/submitButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginLogo" />
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     </android.support.constraint.ConstraintLayout>
 

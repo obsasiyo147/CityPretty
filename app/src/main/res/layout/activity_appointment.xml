@@ -9,12 +9,27 @@
     android:orientation="vertical"
     android:id="@+id/drawer_layout">
 
+
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/colorCream"
         tools:context=".AppointmentActivity">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/cityPrettyPink"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:titleTextColor="@color/colorBlack"
+            app:title="Appointments"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
        <!-- <EditText
             android:layout_width="300dp"
@@ -42,15 +57,15 @@
         <EditText
             android:layout_width="300dp"
             android:layout_height="100dp"
-            android:background="@drawable/shape"
             android:layout_gravity="center"
             android:layout_marginBottom="25dp"
+            android:background="@drawable/shape"
+            android:hint="Add Description"
             android:lines="8"
             android:maxLines="10"
             android:minLines="6"
             android:paddingLeft="20dp"
-            android:paddingBottom="50dp"
-            android:hint="Add Description" />
+            android:paddingBottom="50dp" />
 
         <Button
             android:layout_width="300dp"

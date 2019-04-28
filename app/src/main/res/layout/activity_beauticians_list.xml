@@ -16,6 +16,17 @@
         tools:context=".BeauticiansList"
         android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/cityPrettyPink"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:titleTextColor="@color/colorBlack"
+            app:title="Beauticians"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
