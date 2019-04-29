@@ -60,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 }
 
                 if(id == R.id.appointments_page) {
-                    startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
+                    startActivity(new Intent(getApplicationContext(), BeauticianSide.class));
                 }
 
                 if(id == R.id.about_city_pretty) {
