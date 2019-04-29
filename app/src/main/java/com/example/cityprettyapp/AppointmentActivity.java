@@ -126,8 +126,8 @@ public class AppointmentActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 }
 
-                if(id == R.id.appointments_page) {
-                    startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
+               if(id == R.id.appointments_page) {
+                    startActivity(new Intent(getApplicationContext(), BeauticianSide.class));
                 }
 
                 if(id == R.id.about_city_pretty) {

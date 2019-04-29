@@ -90,7 +90,7 @@ public class ChangeSettings extends AppCompatActivity {
                 }
 
                 if(id == R.id.appointments_page) {
-                    startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
+                    startActivity(new Intent(getApplicationContext(), BeauticianSide.class));
                 }
 
                 if(id == R.id.about_city_pretty) {

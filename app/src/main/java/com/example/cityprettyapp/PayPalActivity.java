@@ -70,6 +70,7 @@ public class PayPalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PayPalActivity.this, AddPedicureToCartActivity.class));
+                Toast.makeText(PayPalActivity.this, "Pedicure added to cart.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -104,7 +105,7 @@ public class PayPalActivity extends AppCompatActivity {
                 }
 
                 if(id == R.id.appointments_page) {
-                    startActivity(new Intent(getApplicationContext(), AppointmentActivity.class));
+                    startActivity(new Intent(getApplicationContext(), BeauticianSide.class));
                 }
 
                 if(id == R.id.about_city_pretty) {
