@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/appointments_page"
-        android:title="Appointments" />
+        android:title="Service Provider Example" />
 
     <item
         android:id="@+id/beauticians_page"

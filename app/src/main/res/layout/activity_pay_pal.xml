@@ -21,7 +21,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/cityPrettyPink"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:title="CityPretty Services" />
+            app:title="Services" />
 
 
         <Button
