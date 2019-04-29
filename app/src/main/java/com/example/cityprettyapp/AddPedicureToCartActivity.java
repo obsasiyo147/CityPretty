@@ -1,5 +1,6 @@
 package com.example.cityprettyapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -35,12 +36,15 @@ public class AddPedicureToCartActivity extends AppCompatActivity {
                     finish();
                 }
 
+
                 else {
                     Toast.makeText(AddPedicureToCartActivity.this, "Payment complete", Toast.LENGTH_SHORT);
 
                 }
 
             }
+
+
 
 
 
@@ -53,6 +57,8 @@ public class AddPedicureToCartActivity extends AppCompatActivity {
         });
 
         mWebView.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CESF5SWSQDXDG");
+        startActivity(new Intent(getApplicationContext(), PayPalActivity.class));
+
 
     }
 }
