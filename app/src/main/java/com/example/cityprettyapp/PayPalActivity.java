@@ -22,6 +22,8 @@ public class PayPalActivity extends AppCompatActivity {
     private Button payBtn;
     private Button addPedicureToCart;
     private Button addManicureToCart;
+    private Button addManHaircutToCart;
+    private Button addWomanHaircutToCart;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private FirebaseAuth firebaseAuth;
@@ -34,6 +36,9 @@ public class PayPalActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         firebaseAuth = FirebaseAuth.getInstance();
         addPedicureToCart = findViewById(R.id.addPedicureToCart);
+        addManicureToCart = findViewById(R.id.addManicureToCart);
+        addManHaircutToCart = findViewById(R.id.addManHaircutToCart);
+        addWomanHaircutToCart = findViewById(R.id.addWomanHaircutToCart);
 
 
 
@@ -71,6 +76,30 @@ public class PayPalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(PayPalActivity.this, AddPedicureToCartActivity.class));
                 Toast.makeText(PayPalActivity.this, "Pedicure added to cart.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addManicureToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PayPalActivity.this, AddManicureToCartActivity.class));
+                Toast.makeText(PayPalActivity.this, "Manicure added to cart.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addManHaircutToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PayPalActivity.this, AddManHaircutToCartActivity.class));
+                Toast.makeText(PayPalActivity.this, "Men's haircut added to cart.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addWomanHaircutToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PayPalActivity.this, AddWomanHaircutToCartActivity.class));
+                Toast.makeText(PayPalActivity.this, "Woman's haircut added to cart.", Toast.LENGTH_SHORT).show();
             }
         });
 
