@@ -9,17 +9,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/store"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name of Store"
-            android:textSize="25dp"
+            android:layout_marginLeft="3dp"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:paddingLeft="3dp"
             android:paddingBottom="4dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="3dp"
-            android:id="@+id/store"/>
+            android:text="Name of Store"
+            android:textSize="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,12 +38,25 @@
     </LinearLayout>
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set Appointment"
-            android:layout_weight="1"
-            android:id="@+id/setAppointment"/>
+    <Button
+        android:id="@+id/setAppointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+
+
+        android:layout_weight="1"
+        android:background="@drawable/round_button"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Set Appointment"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+
+        />
 
 
 

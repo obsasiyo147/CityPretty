@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorCream"
     android:id="@+id/drawer_layout">
 
 
@@ -43,6 +44,8 @@
             android:layout_marginTop="120dp"
             android:layout_marginBottom="15dp"
             android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:textColor="@color/white"
             android:text="Pick Up Address"
             android:id="@+id/location"/>
 
@@ -51,6 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="25dp"
+            android:background="@drawable/round_button"
+            android:textColor="@color/white"
             android:text="Pick Date and Time"
             android:id="@+id/datepicker"/>
 
@@ -71,6 +76,8 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:textColor="@color/white"
             android:text="Get Price" />
 
 
