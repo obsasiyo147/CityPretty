@@ -12,7 +12,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class AddManicureToCartActivity extends AppCompatActivity {
+public class AddManHaircutToCartActivity extends AppCompatActivity {
     private WebView mWebView;
     private ProgressBar mProgress;
     private int id;
@@ -32,12 +32,12 @@ public class AddManicureToCartActivity extends AppCompatActivity {
                 mWebView.setVisibility(View.GONE);
                 mProgress.setVisibility(View.VISIBLE);
                 if(url.equals("http://citypretty.com")) {
-                    Toast.makeText(AddManicureToCartActivity.this, "Payment is canceled", Toast.LENGTH_SHORT);
+                    Toast.makeText(AddManHaircutToCartActivity.this, "Payment is canceled", Toast.LENGTH_SHORT);
                     finish();
                 }
 
                 else {
-                    Toast.makeText(AddManicureToCartActivity.this, "Payment complete", Toast.LENGTH_SHORT);
+                    Toast.makeText(AddManHaircutToCartActivity.this, "Payment complete", Toast.LENGTH_SHORT);
 
                 }
 
@@ -53,7 +53,7 @@ public class AddManicureToCartActivity extends AppCompatActivity {
             }
         });
 
-        mWebView.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BDGTQ69K8YGNG");
+        mWebView.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MVT828FYYK352");
         startActivity(new Intent(getApplicationContext(), PayPalActivity.class));
 
     }
