@@ -44,8 +44,6 @@ public class ChangeSettings extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         drawerLayout = findViewById(R.id.drawer_layout);
-
-
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
