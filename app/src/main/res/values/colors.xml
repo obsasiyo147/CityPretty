@@ -8,4 +8,6 @@
     <color name="activityBackground">#f4f4f4</color>
     <color name="colorGrey">#979da8</color>
     <color name="colorCream">#f2f3f4</color>
+    <color name="colorView">#d8d8d8</color>
+
 </resources>

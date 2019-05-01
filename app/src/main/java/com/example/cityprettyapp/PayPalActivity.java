@@ -48,7 +48,7 @@ public class PayPalActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_shopping_cart_black_24dp);
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,

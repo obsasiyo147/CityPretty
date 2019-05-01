@@ -44,18 +44,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-
-
+        android:layout_marginRight="70dp"
         android:layout_weight="1"
-        android:background="@drawable/round_button"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="Set Appointment"
         android:textAlignment="center"
+        android:background="@drawable/round_button"
         android:textColor="@color/white"
         android:textSize="12dp"
-
         />
 
 
